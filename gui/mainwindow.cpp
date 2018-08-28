@@ -18,7 +18,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     proc.setProcessChannelMode(QProcess::MergedChannels);
+    this->setFixedSize(QSize(720, 295));
     ui->setupUi(this);
+
 }
 
 MainWindow::~MainWindow()
@@ -50,14 +52,7 @@ void MainWindow::endC() {
     }
     active = false;
 
-
-
-
-
-
-
 }
-
 
 
 void MainWindow::crypt() {
