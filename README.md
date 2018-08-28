@@ -9,4 +9,4 @@
 ---
 Image of GUI:
 
-![GUI](https://gitlab.com/mbednarek360/swiftcrypt/raw/master/gui%20screenshot.png)
+![GUI](https://gitlab.com/mbednarek360/swiftcrypt/raw/master/gui-screenshot.png)
