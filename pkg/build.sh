@@ -1,2 +1,2 @@
 mkdir ../out
-g++ ../src/encrypt.cpp -o ../out/encrypt && ../out/encrypt
+g++ ../src/encrypt.cpp -o ../out/encrypt
