@@ -7,7 +7,7 @@
 ##### SwiftCrypt is a command line based program, no gui is currently available.
 
 ---
-To install, download and run install.sh. You must run this script as root to work.
+To install, clone the repo and run install.sh. You must run this script as root to work.
 
 `sudo sh install.sh`
 
