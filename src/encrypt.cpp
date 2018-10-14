@@ -183,8 +183,10 @@ if (inMode == "-e") {
     //build verification vector
     cout << "Verifying key..." << endl;
     map < InfInt, char > ver = {};
+    InfInt n = 0;
     for (InfInt i = (out.size() - ky.size()); i < out.size(); i++) {
       ver[n] = out[i];
+      n++;
     }
 
     //remove verification vector from output
