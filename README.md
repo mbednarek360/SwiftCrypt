@@ -21,10 +21,10 @@ To uninstall, run uninstall.sh located in the SwiftCrypt directory. Root is agai
 Encrypting a file requires an argument for an input file and a key file.
 
 Ex:
-`swiftcrypt input.txt key.txt -e`
+`swiftcrypt file.txt key.txt -e`
 
 
 Decoding a file requires a similar process.
 
 Ex:
-`swiftcrypt input.txt key.txt -d`
+`swiftcrypt file.txt.sc key.txt -d`

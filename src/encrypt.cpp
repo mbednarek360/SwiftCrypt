@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
+#include <stdio.h>
 #include <map>
 #include "infint.h"
 using namespace std;
@@ -90,6 +91,7 @@ map < InfInt, char > dth(InfInt q) {
 int main(int argc, char * argv[]) {
   system("clear");
   string inMode = argv[3];
+  string oFName = argv[1];
 
   //read key to char vector
   cout << "Reading key file..." << endl;
@@ -117,11 +119,16 @@ int main(int argc, char * argv[]) {
     ky.erase(ky.size() - 1);
   }
 
-//write key to input file
 if (inMode == "-e") {
-    cout << "Writing key to input file..." << endl;
+
+  //rename file
+  oFName = (oFName + ".sc");
+  rename(argv[1], oFName.c_str());
+
+  //write key to input file
+  cout << "Writing key to input file..." << endl;
   ofstream keyV;
-  keyV.open(argv[1], ios::binary | ios::app);
+  keyV.open(oFName, ios::binary | ios::app);
   for (InfInt i = 0; i < ky.size(); i+=2) {
     stringstream t;
     t << ky[i];
@@ -131,6 +138,11 @@ if (inMode == "-e") {
     keyV.write((char *)&t1, 1);
   }
   keyV.close();
+} else if (inMode == "-d") {
+
+  //revert file name
+  oFName = oFName.substr(0, oFName.size()-3);
+  rename(argv[1], oFName.c_str());
 }
 
   //read input to char vector
@@ -138,7 +150,7 @@ if (inMode == "-e") {
   map < InfInt, char > in = {};
   InfInt n = 0;
   ifstream f;
-  f.open(argv[1], ios::binary);
+  f.open(oFName, ios::binary);
   if (f.is_open()) {
     while (!f.eof()) {
       stringstream s;
@@ -196,7 +208,7 @@ if (inMode == "-e") {
   //write output to file
   cout << "Writing output file..." << endl;
   ofstream outF;
-  outF.open(argv[1], ios::binary);
+  outF.open(oFName, ios::binary);
   for (InfInt i = 0; i < out.size(); i+=2) {
     stringstream t;
     t << out[i];
