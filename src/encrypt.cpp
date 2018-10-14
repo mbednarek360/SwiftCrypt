@@ -174,9 +174,15 @@ if (inMode == "-e") {
     InfInt n = 0;
     for (InfInt i = (out.size() - ky.size()); i < out.size(); i++) {
       ver[n] = out[i];
-      out[i] = NULL;
       n++;
     }
+
+    //remove verification vector from output
+    map < InfInt, char > tmp = {};
+    for (InfInt i = 0; i < (out.size() - ky.size()); i++) {
+      tmp[i] = out[i];
+    }
+    out = tmp;
 
     //verify key
     if (ky != ver) {
