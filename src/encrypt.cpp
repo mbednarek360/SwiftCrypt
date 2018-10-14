@@ -198,6 +198,12 @@ if (inMode == "-e") {
 
     //verify key
     if (ky != ver) {
+
+      //return to renamed files
+      string tempName = (oFName + ".sc");
+      rename(oFName.c_str(), tempName.c_str());
+
+      //print error
       system("clear");
       cout << "Error verifying key. Make sure you have the correct key and try again." << endl;
       return 1;
