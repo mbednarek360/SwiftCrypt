@@ -5,6 +5,14 @@
 #include "infint.h"
 using namespace std;
 
+//print charectar vector (for debugging)
+void printVector(map < InfInt, char > m) {
+  for (InfInt i = 0; i < m.size(); i++) {
+    cout << m[i];
+  }
+  cout << endl;
+}
+
 //return 16^n
 InfInt raise(InfInt p) {
   InfInt out = 16;
@@ -81,33 +89,7 @@ map < InfInt, char > dth(InfInt q) {
 
 int main(int argc, char * argv[]) {
   system("clear");
-
-
-  //read input to char vector
-  cout << "Reading input file..." << endl;
-  map < InfInt, char > in = {};
-  InfInt n = 0;
-  ifstream f;
-  f.open(argv[1], ios::binary);
-  if (f.is_open()) {
-    while (!f.eof()) {
-      stringstream s;
-      int it;
-      it = f.get();
-      s << hex << it;
-      string s1 = s.str();
-      if (s1.length() < 2) {
-        s1 = ('0' + s1);
-      }
-      in[n] = s1[0];
-      in[(n+1)] = s1[1];
-      n+=2;
-    }
-  }
-  f.close();
- for (int i = 0; i < 2; i++) {
-    in.erase(in.size() - 1);
-  }
+  string inMode = argv[3];
 
   //read key to char vector
   cout << "Reading key file..." << endl;
@@ -135,15 +117,74 @@ int main(int argc, char * argv[]) {
     ky.erase(ky.size() - 1);
   }
 
+//write key to input file
+if (inMode == "-e") {
+    cout << "Writing key to input file..." << endl;
+  ofstream keyV;
+  keyV.open(argv[1], ios::binary | ios::app);
+  for (InfInt i = 0; i < ky.size(); i+=2) {
+    stringstream t;
+    t << ky[i];
+    t << ky[(i+1)];
+    int t1;
+    t >> hex >> t1;
+    keyV.write((char *)&t1, 1);
+  }
+  keyV.close();
+}
+
+  //read input to char vector
+  cout << "Reading input file..." << endl;
+  map < InfInt, char > in = {};
+  InfInt n = 0;
+  ifstream f;
+  f.open(argv[1], ios::binary);
+  if (f.is_open()) {
+    while (!f.eof()) {
+      stringstream s;
+      int it;
+      it = f.get();
+      s << hex << it;
+      string s1 = s.str();
+      if (s1.length() < 2) {
+        s1 = ('0' + s1);
+      }
+      in[n] = s1[0];
+      in[(n+1)] = s1[1];
+      n+=2;
+    }
+  }
+  f.close();
+ for (int i = 0; i < 2; i++) {
+    in.erase(in.size() - 1);
+  }
+
   //calculate output
   cout << "Calculating output..." << endl;
-  string inMode = argv[3];
   map < InfInt, char > out = {};
   if (inMode == "-e") {
     out = dth(htd(in) * htd(ky));
 
   } else if (inMode == "-d") {
     out = dth(htd(in) / htd(ky));
+
+    //build verification vector
+    cout << "Verifying key..." << endl;
+    map < InfInt, char > ver = {};
+    InfInt n = 0;
+    for (InfInt i = (out.size() - ky.size()); i < out.size(); i++) {
+      ver[n] = out[i];
+      out[i] = NULL;
+      n++;
+    }
+
+    //verify key
+    if (ky != ver) {
+      system("clear");
+      cout << "Error verifying key. Make sure you have the correct key and try again." << endl;
+      return 1;
+    }
+
   }
 
   //write output to file
