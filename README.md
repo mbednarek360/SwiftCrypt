@@ -4,7 +4,7 @@
 
 #### ⚠SwiftCrypt is still in alpha, it may be very buggy and unoptomized. Updates will come.⚠️
 
-##### SwiftCrypt is a command line based program, no gui is currently available.
+##### SwiftCrypt is a command line based program, although an optional GUI is currently being developed.
 
 ---
 To install, clone the repo and run install.sh. You must run this script as root to work.
@@ -28,3 +28,13 @@ Decoding a file requires a similar process.
 
 Ex:
 `swiftcrypt file.txt.sc key.txt -d`
+
+---
+
+Below is a screenshot of the work in progress GUI.
+
+![Screenshot of GUI](screenshot.png)
+
+It can encrypt and decrypt any file with an alphanumerical key.
+
+---
