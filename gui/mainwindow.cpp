@@ -44,7 +44,7 @@ void MainWindow::on_startButton_clicked()
     QString key = ui->keyInp->text();
     if (fileName != "") {
         if (key != "") {
-        QString commandString = ("../../out/encrypt " + fileName + " ../../tmp/key ");
+        QString commandString = ("../../out/encrypt \"" + fileName + "\" ../../tmp/key ");
         if (encrypt) {
             commandString += "-e";
         }
