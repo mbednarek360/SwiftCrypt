@@ -27,10 +27,12 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    sha512.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    sha512.h
 
 FORMS += \
         mainwindow.ui

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "sha512.h"
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDebug>
@@ -41,22 +42,22 @@ void MainWindow::on_fileButton_clicked()
 
 void MainWindow::on_startButton_clicked()
 {
-    QString key = ui->keyInp->text();
+    QString key = QString::fromStdString(sha512(ui->keyInp->text().toStdString()));
     if (fileName != "") {
         if (key != "") {
-        QString commandString = ("../../out/encrypt \"" + fileName + "\" ../../tmp/key ");
+        QString commandString = ("../../out/encrypt " + fileName + " ../../tmp/key ");
         if (encrypt) {
             commandString += "-e";
         }
         else {
             commandString += "-d";
         }
-
+        qDebug() << commandString;
 
         QFile file("../../tmp/key");
             if (file.open(QIODevice::ReadWrite)) {
                 QTextStream stream(&file);
-                stream << key << endl;
+                stream << hex << key;
             }
 
 
