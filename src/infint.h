@@ -29,7 +29,6 @@
  *
  *
  * No overflows, happy programmers!
- *
  */
 
 #ifndef INFINT_H_
