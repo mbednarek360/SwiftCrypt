@@ -2,7 +2,7 @@
 
 ### Fast and simple two way key based encryption.
 
-#### ⚠SwiftCrypt is still in alpha, it may be very buggy and unoptomized. Updates will come.⚠️
+#### ⚠SwiftCrypt is still in alpha, it may be very buggy and unoptomized. Updates will come.⚠ 
 
 ##### SwiftCrypt is a command line based program, although an optional GUI is currently being developed.
 
